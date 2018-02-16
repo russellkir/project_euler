@@ -12,8 +12,6 @@ int sum(int n) {
 }
 
 int main() {
-	cout << "Hello World!" << endl;
-	cout << sum(10) << endl;
 	cout << sum(1000) << endl;
 	return 0;
 }
