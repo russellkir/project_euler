@@ -14,13 +14,6 @@ int is_fact(int n, int f) {
 }
 
 int num_divisors(int n){
-    /*
-    int num_div = 0;
-    for(int i = 1; i <= n; ++i) {
-        if(is_fact(n, i)) {
-            ++num_div;
-        }   
-    }*/
     int divisors = 1;
     int count = 0;
     while(n % 2 == 0) {
