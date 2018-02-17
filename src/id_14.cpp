@@ -1,24 +1,33 @@
 #include <iostream>
+#include <vector>
 #include <string>
 #include <math.h>
 
 using namespace std;
 
-int collatz(int n) {
-    //cout << n << "-";
-    int count = 1;
-    while (n != 1) {
-        if(n % 2 == 0) {
-            n /= 2;
-        } else {
-            n = 3*n + 1;
-        }
-        ++count;
-        if(count > pow(10,8)) break;
-        //cout << n << "-"; 
+// cache for memoization
+vector<int> cache(10000000, -1);
+
+int collatz(long n) {
+    // base case
+    if(n == 1) {
+        return 1;
     }
-    //cout << endl;
-    return count;
+    // check if in cache
+    if(n < (long)cache.size() && cache[n] != -1) {
+        return cache[n];
+    }
+    long np1;
+    if(n % 2 == 0) {
+        np1 = n / 2;
+    } else {
+        np1 = n*3 + 1;
+    }
+    long result = 1 + collatz(np1);
+    if(n < (long)cache.size() ) {
+        cache[n] = result;
+    }
+    return result;
 }
 
 int longest_c(int n) {
@@ -26,7 +35,6 @@ int longest_c(int n) {
     int tmp_i = 0;
     for(int i = 1; i < n; ++i) {
         int tmp = collatz(i);
-        cout << i << ": " << tmp << endl;
         if(tmp > longest) {
             longest = tmp;
             tmp_i = i;
@@ -36,8 +44,6 @@ int longest_c(int n) {
 }
 int main() {
 
-    cout << collatz(13) << endl;
-    cout << collatz(113383) << endl;
     cout << longest_c(1000000) << endl;
 	return 0;
 }
