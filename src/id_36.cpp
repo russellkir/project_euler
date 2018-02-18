@@ -51,7 +51,7 @@ long long pal_sum(long long max){
 
 int main() {
 
-    cout << pal_sum(10000000) << endl;
+    cout << pal_sum(1000000) << endl;
     
 	return 0;
 }
